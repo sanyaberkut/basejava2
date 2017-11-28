@@ -78,6 +78,8 @@
 ![finish](https://user-images.githubusercontent.com/13649199/27245924-cab3618e-52f6-11e7-9655-4293149b4126.png)
 
 - Реализуйте класс `ArrayStorage`: хранение резюме на основе массива (методы `clear, get, save, delete, getAll, size`). Не используйте в решении коллекции, реализацию на их основе мы добавим позднее.
+   - [Массивы](http://study-java.ru/uroki-java/massivy-v-java/)
+   - [Java массивы](http://info.javarush.ru/javarush_articles/2015/12/10/Java-%D0%BC%D0%B0%D1%81%D1%81%D0%B8%D0%B2%D1%8B.html)
 - Протестируйте вашу реализацию, запустив `MainTestArrayStorage.main()`: в IDEA слева на полях зеленая стрелка.
 - Протестируйте вашу реализацию интерактивно с помощью `MainArray.main()`.
 - Дополнительные материалы по IntelliJ IDEA
