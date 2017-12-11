@@ -52,7 +52,7 @@ public class ArrayStorage {
 
         for(int i = 0; i<realSize; i++) {
             if ( storage[i] != null ) {
-                storagesNew[j] = storage[i];
+                storagesNew[i] = storage[i];
             }
         }
         return storagesNew;
