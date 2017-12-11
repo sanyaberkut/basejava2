@@ -7,7 +7,7 @@ public class ArrayStorage {
     int realSize = 0;
 
     void clear() {
-        for(int i = 0; i<storage.length; i++) {
+        for(int i = 0; i<realSize; i++) {
             storage[i] = null;
         }
         realSize = 0;
@@ -25,10 +25,8 @@ public class ArrayStorage {
 
     Resume get(String uuid) {
         for(int i = 0; i<realSize; i++) {
-            if (storage[i] != null) {
-                if (storage[i].toString().equals(uuid)) {
+            if (storage[i] != null && storage[i].toString().equals(uuid)) {
                     return storage[i];
-                }
             }
         }
         return null;
@@ -36,13 +34,11 @@ public class ArrayStorage {
 
     void delete(String uuid) {
         for(int i = 0; i<realSize; i++) {
-            if (storage[i] != null) {
-                if (storage[i].toString().equals(uuid)) {
+            if (storage[i] != null && storage[i].toString().equals(uuid)) {
                     storage[i] = null;
                     // переносим в позицию где был удален элемент с послдеднего елемента масива
                     storage[i]=storage[realSize-1];
                     storage[realSize-1] = null;
-                }
             }
         }
         realSize--;
@@ -52,18 +48,14 @@ public class ArrayStorage {
      * @return array, contains only Resumes in storage (without null)
      */
     Resume[] getAll() {
-        Resume[] storagesNew = new Resume[10000];
+        Resume[] storagesNew = new Resume[realSize];
 
-        int j = 0;
-        for(int i = 0; i<storage.length; i++) {
+        for(int i = 0; i<realSize; i++) {
             if ( storage[i] != null ) {
                 storagesNew[j] = storage[i];
-                j++;
             }
         }
-        realSize = j++;
-        storage = storagesNew;
-        return storage;
+        return storagesNew;
     }
 
     int size() {
