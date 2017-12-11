@@ -4,27 +4,27 @@
 import java.util.Arrays;
 public class ArrayStorage {
     Resume[] storage = new Resume[10000];
-    int realSize = 0;
+    int size = 0;
 
     void clear() {
-        for(int i = 0; i<realSize; i++) {
+        for(int i = 0; i<size; i++) {
             storage[i] = null;
         }
-        realSize = 0;
+        size = 0;
     }
 
     void save(Resume r) {
 
-        if( realSize < storage.length ) {
-            storage[realSize] = r;
-            realSize++;
+        if( size < storage.length ) {
+            storage[size] = r;
+            size++;
         } else {
             System.out.println("Хранилище заполнено");
         }
     }
 
     Resume get(String uuid) {
-        for(int i = 0; i<realSize; i++) {
+        for(int i = 0; i<size; i++) {
             if (storage[i] != null && storage[i].toString().equals(uuid)) {
                     return storage[i];
             }
@@ -33,13 +33,12 @@ public class ArrayStorage {
     }
 
     void delete(String uuid) {
-        for(int i = 0; i<realSize; i++) {
+        for(int i = 0; i<size; i++) {
             if (storage[i] != null && storage[i].toString().equals(uuid)) {
-                storage[i] = null;
-                // переносим в позицию где был удален элемент с послдеднего елемента масива
-                storage[i]=storage[realSize-1];
-                storage[realSize-1] = null;
-                realSize--;
+                 // переносим в позицию где был удален элемент с послдеднего елемента масива
+                storage[i]=storage[size-1];
+                storage[size-1] = null;
+                size--;
             }
         }
     }
@@ -48,22 +47,15 @@ public class ArrayStorage {
      * @return array, contains only Resumes in storage (without null)
      */
     Resume[] getAll() {
-        Resume[] storagesNew = new Resume[realSize];
+        Resume[] storagesNew = new Resume[size];
 
-        for(int i = 0; i<realSize; i++) {
+        for(int i = 0; i<size; i++) {
                 storagesNew[i] = storage[i];
         }
         return storagesNew;
     }
 
     int size() {
-        int k = 0;
-        for(int i = 0; i<storage.length; i++) {
-            if( storage[i] != null ) {
-                k++;
-            }
-        }
-        realSize = k;
-        return k;
+        return size;
     }
 }
