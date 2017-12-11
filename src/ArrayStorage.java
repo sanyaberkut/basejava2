@@ -35,13 +35,13 @@ public class ArrayStorage {
     void delete(String uuid) {
         for(int i = 0; i<realSize; i++) {
             if (storage[i] != null && storage[i].toString().equals(uuid)) {
-                    storage[i] = null;
-                    // переносим в позицию где был удален элемент с послдеднего елемента масива
-                    storage[i]=storage[realSize-1];
-                    storage[realSize-1] = null;
+                storage[i] = null;
+                // переносим в позицию где был удален элемент с послдеднего елемента масива
+                storage[i]=storage[realSize-1];
+                storage[realSize-1] = null;
+                realSize--;
             }
         }
-        realSize--;
     }
 
     /**
