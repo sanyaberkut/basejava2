@@ -49,9 +49,7 @@ public class ArrayStorage {
     Resume[] getAll() {
         Resume[] storagesNew = new Resume[size];
 
-        for(int i = 0; i<size; i++) {
-                storagesNew[i] = storage[i];
-        }
+        System.arraycopy(storage, 0, storagesNew, 0, size);
         return storagesNew;
     }
 
