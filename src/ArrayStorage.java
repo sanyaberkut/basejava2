@@ -51,9 +51,7 @@ public class ArrayStorage {
         Resume[] storagesNew = new Resume[realSize];
 
         for(int i = 0; i<realSize; i++) {
-            if ( storage[i] != null ) {
                 storagesNew[i] = storage[i];
-            }
         }
         return storagesNew;
     }
