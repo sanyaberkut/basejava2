@@ -24,7 +24,7 @@ public class ArrayStorage {
                 System.out.println("Хранилище заполнено");
             }
         } else {
-            update(r.getUuid(), r);
+            System.out.println("Такой элемент уже существует");
         }
     }
 
@@ -32,12 +32,10 @@ public class ArrayStorage {
         if( get(r.getUuid()) == null) {
             System.out.println("Резюме не найдено с данным идентификатор");
         } else {
-            for(int i = 0; i<size; i++) {
-                if (storage[i] != null && storage[i].toString().equals(uuid)) {
-                    storage[i] = r;
-                    System.out.println("Резюме обновлено");
-                    return;
-                }
+            int index = getStorageIndex(uuid);
+            if(index>0) {
+                storage[index] = r;
+                System.out.println("Резюме обновлено");
             }
         }
     }
@@ -51,19 +49,27 @@ public class ArrayStorage {
         return null;
     }
 
+    public int getStorageIndex(String uuid) {
+        for(int i = 0; i<size; i++) {
+            if (storage[i] != null && storage[i].toString().equals(uuid)) {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+
     public void delete(String uuid) {
         if( get(uuid) == null) {
             System.out.println("Резюме не найдено с данным идентификатор");
         } else {
-            for (int i = 0; i < size; i++) {
-                if (storage[i] != null && storage[i].toString().equals(uuid)) {
-                    // переносим в позицию где был удален элемент с послдеднего елемента масива
-                    storage[i] = storage[size - 1];
-                    storage[size - 1] = null;
-                    size--;
-                    System.out.println("Резюме удалено");
-                    return;
-                }
+            int index = getStorageIndex(uuid);
+            if(index>0) {
+                // переносим в позицию где был удален элемент с послдеднего елемента масива
+                storage[index] = storage[size - 1];
+                storage[size - 1] = null;
+                size--;
+                System.out.println("Резюме удалено");
             }
         }
     }
