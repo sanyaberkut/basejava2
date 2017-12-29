@@ -29,24 +29,22 @@ public class ArrayStorage {
     }
 
     public void update(String uuid, Resume r) {
-        if( get(r.getUuid()) == null) {
-            System.out.println("Резюме не найдено с данным идентификатор");
+        int i = getStorageIndex(uuid);
+        if(i != -1) {
+            storage[i] = r;
+            System.out.println("Резюме обновлено");
         } else {
-            int index = getStorageIndex(uuid);
-            if(index>0) {
-                storage[index] = r;
-                System.out.println("Резюме обновлено");
-            }
+            System.out.println("Резюме не найдено с данным идентификатор");
         }
     }
 
     public Resume get(String uuid) {
-        for(int i = 0; i<size; i++) {
-            if (storage[i] != null && storage[i].toString().equals(uuid)) {
-                return storage[i];
-            }
+        int i = getStorageIndex(uuid);
+        if(i != -1) {
+            return storage[i];
+        } else {
+            return null;
         }
-        return null;
     }
 
     public int getStorageIndex(String uuid) {
@@ -55,22 +53,20 @@ public class ArrayStorage {
                 return i;
             }
         }
-        return 0;
+        return -1;
     }
 
 
     public void delete(String uuid) {
-        if( get(uuid) == null) {
-            System.out.println("Резюме не найдено с данным идентификатор");
+        int i = getStorageIndex(uuid);
+        if(i != -1) {
+            // переносим в позицию где был удален элемент с послдеднего елемента масива
+            storage[i] = storage[size - 1];
+            storage[size - 1] = null;
+            size--;
+            System.out.println("Резюме удалено");
         } else {
-            int index = getStorageIndex(uuid);
-            if(index>0) {
-                // переносим в позицию где был удален элемент с послдеднего елемента масива
-                storage[index] = storage[size - 1];
-                storage[size - 1] = null;
-                size--;
-                System.out.println("Резюме удалено");
-            }
+            System.out.println("Резюме не найдено с данным идентификатор");
         }
     }
 
