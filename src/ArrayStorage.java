@@ -49,7 +49,7 @@ public class ArrayStorage {
 
     public int getStorageIndex(String uuid) {
         for(int i = 0; i<size; i++) {
-            if (storage[i] != null && storage[i].toString().equals(uuid)) {
+            if (storage[i] != null && storage[i].getUuid().equals(uuid)) {
                 return i;
             }
         }
@@ -74,9 +74,7 @@ public class ArrayStorage {
      * @return array, contains only Resumes in storage (without null)
      */
     public Resume[] getAll() {
-        Resume[] storagesNew = new Resume[size];
-        System.arraycopy(storage, 0, storagesNew, 0, size);
-        return storagesNew;
+        return Arrays.copyOfRange(storage, 0, size);
     }
 
     public int size() {
